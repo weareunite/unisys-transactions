@@ -13,7 +13,7 @@ class Transaction extends Model
     protected $table = 'transactions';
 
     protected $fillable = [
-        'type', 'source_id', 'destination_id', 'amount', 'variable_symbol', 'specific_symbol', 'description', 'posted_at',
+        'type', 'source_id', 'destination_iban', 'amount', 'variable_symbol', 'specific_symbol', 'description', 'posted_at',
     ];
 
     const TYPE_CREDIT   = 'credit';
@@ -28,11 +28,6 @@ class Transaction extends Model
     public function source()
     {
         return $this->belongsTo(Source::class, 'source_id');
-    }
-
-    public function destination()
-    {
-        return $this->belongsTo(Source::class, 'destination_id');
     }
 
     public static function getTypes()

@@ -20,12 +20,12 @@ class TransactionResource extends Resource
             'type'                      => $this->type,
             'amount'                    => $this->amount,
             'balance'                   => $this->balance,
-            'variable_symbol'           => $this->variable_symbol,
-            'specific_symbol'           => $this->specific_symbol,
+            'variable_symbol'           => (int) $this->variable_symbol,
+            'specific_symbol'           => (int) $this->specific_symbol,
             'description'               => $this->description,
             'posted_at'                 => (string)$this->posted_at,
             'created_at'                => (string)$this->created_at,
-            'transaction_destination'   => new SourceResource($this->transaction_destination),
+            'destination_iban'          => $this->destination_iban,
             'transaction_source'        => new SourceResource($this->transaction_source),
         ];
     }

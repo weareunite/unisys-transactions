@@ -27,9 +27,10 @@ class UpdateTransactionRequest extends FormRequest
         $allRules = [
             'type'                  => 'in:'.implode(',', Transaction::getTypes()),
             'transaction_source_id' => 'integer|exists:transaction_sources,id',
+            'destination_iban'      => 'string|min:15|max:32',
             'amount'                => 'numeric',
-            'variable_symbol'       => 'string|max:250|nullable',
-            'specific_symbol'       => 'string|max:250|nullable',
+            'variable_symbol'       => 'numeric|max:10|nullable',
+            'specific_symbol'       => 'numeric|max:10|nullable',
             'description'           => 'string|max:250|nullable',
             'paid_at'               => 'date_format:"Y-m-d H:i"',
         ];

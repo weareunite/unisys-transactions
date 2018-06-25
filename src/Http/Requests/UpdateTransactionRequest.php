@@ -5,7 +5,7 @@ namespace Unite\Transactions\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Unite\Transactions\Models\Transaction;
 
-class UpdateRequest extends FormRequest
+class UpdateTransactionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

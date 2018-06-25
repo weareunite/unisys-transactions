@@ -3,7 +3,7 @@
 namespace Unite\Transactions\Http\Controllers;
 
 use Unite\UnisysApi\Http\Controllers\Controller;
-use Unite\Transactions\Http\Requests\UpdateRequest;
+use Unite\Transactions\Http\Requests\UpdateTransactionRequest;
 use Unite\Transactions\TransactionRepository;
 
 /**
@@ -24,10 +24,10 @@ class TransactionController extends Controller
      * Update
      *
      * @param $id
-     * @param \Unite\Transactions\Http\Requests\UpdateRequest $request
+     * @param \Unite\Transactions\Http\Requests\UpdateTransactionRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update($id, UpdateRequest $request)
+    public function update($id, UpdateTransactionRequest $request)
     {
         if(!$object = $this->repository->find($id)) {
             abort(404);

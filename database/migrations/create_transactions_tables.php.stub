@@ -8,6 +8,19 @@ class CreateTransactionsTables extends Migration
 {
     public function up()
     {
+        Schema::create('transaction_sources', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('type');
+            $table->string('name');
+            $table->string('short_name');
+            $table->decimal('balance', 12, 2);
+            $table->string('iban')->nullable();
+            $table->string('bic')->nullable();
+            $table->string('swift')->nullable();
+            $table->string('description')->nullable();
+            $table->timestamps();
+        });
+
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
             $table->morphs('subject');
@@ -24,24 +37,11 @@ class CreateTransactionsTables extends Migration
 
             $table->foreign('source_id')->references('id')->on('transaction_sources');
         });
-
-        Schema::create('transaction_sources', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('type');
-            $table->string('name');
-            $table->string('short_name');
-            $table->decimal('balance', 12, 2);
-            $table->string('iban')->nullable();
-            $table->string('bic')->nullable();
-            $table->string('swift')->nullable();
-            $table->string('description')->nullable();
-            $table->timestamps();
-        });
     }
 
     public function down()
     {
-        Schema::drop('transactions');
         Schema::drop('transaction_sources');
+        Schema::drop('transactions');
     }
 }

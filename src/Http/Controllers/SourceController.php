@@ -3,22 +3,23 @@
 namespace Unite\Transactions\Http\Controllers;
 
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Unite\Transactions\Http\Requests\Transaction\UpdateRequest;
-use Unite\Transactions\Http\Resources\TransactionResource;
+use Unite\Transactions\Http\Requests\Source\StoreRequest;
+use Unite\Transactions\Http\Requests\Source\UpdateRequest;
+use Unite\Transactions\Http\Resources\SourceResource;
+use Unite\Transactions\SourceRepository;
 use Unite\UnisysApi\Http\Controllers\Controller;
-use Unite\Transactions\TransactionRepository;
 use Unite\UnisysApi\Http\Requests\QueryRequest;
 
 /**
- * @resource Transactions
+ * @resource Transaction Sources
  *
- * Transactions handler
+ * Transaction Sources handler
  */
-class TransactionController extends Controller
+class SourceController extends Controller
 {
     protected $repository;
 
-    public function __construct(TransactionRepository $repository)
+    public function __construct(SourceRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -27,20 +28,20 @@ class TransactionController extends Controller
      * List
      *
      * @param QueryRequest $request
-     * @return AnonymousResourceCollection|TransactionResource[]
+     * @return AnonymousResourceCollection|SourceResource[]
      */
     public function list(QueryRequest $request)
     {
         $object = $this->repository->filterByRequest($request);
 
-        return TransactionResource::collection($object);
+        return SourceResource::collection($object);
     }
 
     /**
      * Show
      *
      * @param $id
-     * @return TransactionResource
+     * @return SourceResource
      */
     public function show($id)
     {
@@ -48,7 +49,22 @@ class TransactionController extends Controller
             abort(404);
         }
 
-        return new TransactionResource($object);
+        return new SourceResource($object);
+    }
+
+    /**
+     * Create
+     *
+     * @param StoreRequest $request
+     * @return SourceResource
+     */
+    public function create(StoreRequest $request)
+    {
+        $data = $request->all();
+
+        $object = $this->repository->create($data);
+
+        return new SourceResource($object);
     }
 
     /**

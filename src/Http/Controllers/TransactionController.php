@@ -27,6 +27,7 @@ class TransactionController extends Controller
      * List
      *
      * @param QueryRequest $request
+     *
      * @return AnonymousResourceCollection|TransactionResource[]
      */
     public function list(QueryRequest $request)
@@ -40,6 +41,7 @@ class TransactionController extends Controller
      * Show
      *
      * @param $id
+     *
      * @return TransactionResource
      */
     public function show($id)
@@ -56,6 +58,7 @@ class TransactionController extends Controller
      *
      * @param $id
      * @param UpdateRequest $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function update($id, UpdateRequest $request)
@@ -75,6 +78,7 @@ class TransactionController extends Controller
      * Delete
      *
      * @param $id
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function delete($id)

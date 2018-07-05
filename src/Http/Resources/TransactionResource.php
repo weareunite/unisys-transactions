@@ -3,6 +3,7 @@
 namespace Unite\Transactions\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
+use Unite\Tags\Http\Resources\TagResource;
 
 class TransactionResource extends Resource
 {
@@ -27,6 +28,7 @@ class TransactionResource extends Resource
             'created_at'                => (string)$this->created_at,
             'destination_iban'          => $this->destination_iban,
             'transaction_source'        => new SourceResource($this->transaction_source),
+            'tags'                      => TagResource::collection($this->tags),
         ];
     }
 }

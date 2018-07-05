@@ -5,10 +5,12 @@ namespace Unite\Transactions\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Unite\Tags\HasTags;
 
 class Transaction extends Model
 {
     use LogsActivity;
+    use HasTags;
 
     protected $table = 'transactions';
 

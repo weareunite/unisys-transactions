@@ -29,11 +29,6 @@ class Transaction extends Model
         'deleting'  => TransactionDeleting::class,
     ];
 
-    protected $casts = [
-        'amount'    => 'float',
-        'balance'   => 'float',
-    ];
-
     const TYPE_CREDIT   = 'credit';
     const TYPE_DEBIT    = 'debit';
     const TYPE_CARD     = 'card';

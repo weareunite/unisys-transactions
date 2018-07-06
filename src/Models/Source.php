@@ -12,6 +12,10 @@ class Source extends Model
         'type', 'name', 'short_name', 'iban', 'bic', 'swift', 'description',
     ];
 
+    protected $casts = [
+        'balance' => 'float',
+    ];
+
     const TYPE_BANK_ACCOUNT = 'bank-account';
     const TYPE_CASH_DESK    = 'cash-desk';
 
@@ -20,7 +24,7 @@ class Source extends Model
         return $this->hasMany(Transaction::class);
     }
 
-    public static function getTypes()
+    public static function getTypes(): array
     {
         return [
             self::TYPE_BANK_ACCOUNT,
@@ -28,7 +32,7 @@ class Source extends Model
         ];
     }
 
-    public function isBankAccount()
+    public function isBankAccount(): bool
     {
         return ($this->type === self::TYPE_BANK_ACCOUNT);
     }

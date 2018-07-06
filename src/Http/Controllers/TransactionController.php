@@ -3,7 +3,6 @@
 namespace Unite\Transactions\Http\Controllers;
 
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Unite\Transactions\Http\Requests\Transaction\UpdateRequest;
 use Unite\Transactions\Http\Resources\TransactionResource;
 use Unite\UnisysApi\Http\Controllers\Controller;
 use Unite\Transactions\TransactionRepository;
@@ -51,40 +50,5 @@ class TransactionController extends Controller
         }
 
         return new TransactionResource($object);
-    }
-
-    /**
-     * Update
-     *
-     * @param $id
-     * @param UpdateRequest $request
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function update($id, UpdateRequest $request)
-    {
-        if(!$object = $this->repository->find($id)) {
-            abort(404);
-        }
-
-        $data = $request->all();
-
-        $object->update($data);
-
-        return $this->successJsonResponse();
-    }
-
-    /**
-     * Delete
-     *
-     * @param $id
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function delete($id)
-    {
-        $this->repository->delete($id);
-
-        return $this->successJsonResponse();
     }
 }

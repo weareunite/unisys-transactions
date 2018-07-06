@@ -26,14 +26,14 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'type'              => 'required|in:'.implode(',', Transaction::getTypes()),
+            'type'              => 'in:'.implode(',', Transaction::getTypes()),
             'source_id'         => 'required|integer|exists:transaction_sources,id',
             'destination_iban'  => 'required|string|min:15|max:32',
             'amount'            => ['required', new PriceAmount],
             'variable_symbol'   => 'nullable|numeric|max:10',
             'specific_symbol'   => 'nullable|numeric|max:10',
             'description'       => 'nullable|string|max:250',
-            'posted_at'         => 'required|date_format:Y-m-d H:i:s',
+            'posted_at'         => 'date_format:Y-m-d H:i:s',
         ];
 
     }

@@ -2,6 +2,7 @@
 
 namespace Unite\Transactions;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Unite\Transactions\Console\Commands\Install;
 
@@ -25,6 +26,8 @@ class TransactionsServiceProvider extends ServiceProvider
                 __DIR__.'/../database/migrations/create_transactions_tables.php.stub' => database_path("/migrations/{$timestamp}_create_transactions_tables.php"),
             ], 'migrations');
         }
+
+        Event::subscribe(TransactionSubscriber::class);
     }
 
     /**

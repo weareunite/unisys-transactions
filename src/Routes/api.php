@@ -21,8 +21,6 @@ Route::group([
     {
         Route::get('/',                             ['as' => 'list',                    'uses' => 'TransactionController@list']);
         Route::get('{id}',                          ['as' => 'show',                    'uses' => 'TransactionController@show']);
-        Route::put('{id}',                          ['as' => 'update',                  'uses' => 'TransactionController@update']);
-        Route::delete('{id}',                       ['as' => 'delete',                  'uses' => 'TransactionController@delete']);
     });
 
     Route::group(['as' => 'transactionSource.', 'prefix' => 'transactionSource'], function ()

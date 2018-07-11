@@ -2,7 +2,6 @@
 
 namespace Unite\Transactions;
 
-
 use Carbon\Carbon;
 use Unite\Transactions\Events\TransactionEvent;
 use Unite\Transactions\Events\TransactionSaving;

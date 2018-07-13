@@ -21,6 +21,10 @@ Route::group([
     {
         Route::get('/',                             ['as' => 'list',                    'uses' => 'TransactionController@list']);
         Route::get('{id}',                          ['as' => 'show',                    'uses' => 'TransactionController@show']);
+
+        Route::put('{id}/attachTags',               ['as' => 'attachTags',              'uses' => 'TransactionController@attachTags']);
+        Route::put('massAttachTags',                ['as' => 'massAttachTags',          'uses' => 'TransactionController@massAttachTags']);
+        Route::put('{id}/detachTags',               ['as' => 'detachTags',              'uses' => 'TransactionController@detachTags']);
     });
 
     Route::group(['as' => 'transactionSource.', 'prefix' => 'transactionSource'], function ()

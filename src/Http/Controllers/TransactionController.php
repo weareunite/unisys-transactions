@@ -3,6 +3,7 @@
 namespace Unite\Transactions\Http\Controllers;
 
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Unite\Tags\Http\Controllers\AttachDetachTags;
 use Unite\Transactions\Http\Resources\TransactionResource;
 use Unite\UnisysApi\Http\Controllers\Controller;
 use Unite\Transactions\TransactionRepository;
@@ -15,6 +16,8 @@ use Unite\UnisysApi\Http\Requests\QueryRequest;
  */
 class TransactionController extends Controller
 {
+    use AttachDetachTags;
+
     protected $repository;
 
     public function __construct(TransactionRepository $repository)

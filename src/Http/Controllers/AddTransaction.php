@@ -4,6 +4,7 @@ namespace Unite\Transactions\Http\Controllers;
 
 use Unite\Transactions\Events\MadeTransaction;
 use Unite\Transactions\Http\Requests\Transaction\StoreRequest;
+use Unite\Transactions\Http\Resources\TransactionResource;
 use Unite\Transactions\Traits\HasTransactionsInterface;
 
 /**
@@ -14,12 +15,12 @@ trait AddTransaction
     /**
      * Add Transaction
      *
-     * Add transaction to model
+     * Add transaction to given model find by model primary id
      *
      * @param int $id
      * @param StoreRequest $request
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return TransactionResource
      */
     public function addTransaction(int $id, StoreRequest $request)
     {
@@ -32,6 +33,6 @@ trait AddTransaction
 
         event(new MadeTransaction($transaction));
 
-        return $this->successJsonResponse();
+        return new TransactionResource($transaction);
     }
 }

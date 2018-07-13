@@ -1,6 +1,6 @@
 <?php
 
-namespace Unite\Tags\Http\Controllers;
+namespace Unite\Transactions\Http\Controllers;
 
 use Unite\Transactions\Events\MadeTransaction;
 use Unite\Transactions\Http\Requests\Transaction\StoreRequest;

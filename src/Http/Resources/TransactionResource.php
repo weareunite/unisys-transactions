@@ -27,7 +27,7 @@ class TransactionResource extends Resource
             'posted_at'                 => (string)$this->posted_at,
             'created_at'                => (string)$this->created_at,
             'destination_iban'          => $this->destination_iban,
-            'transaction_source'        => new SourceResource($this->transaction_source),
+            'source'                    => new SourceResource($this->source),
             'tags'                      => TagResource::collection($this->tags),
         ];
     }

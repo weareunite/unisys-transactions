@@ -16,5 +16,5 @@ interface HasTransactionsInterface
 
     public function transactionsCount(): int;
 
-    public function getLatestTransactions(int $limit = 20);
+    public function getLatestTransactions(int $limit = null);
 }

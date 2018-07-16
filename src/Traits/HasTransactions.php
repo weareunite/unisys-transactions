@@ -36,9 +36,15 @@ trait HasTransactions
         return $this->transactions()->count();
     }
 
-    public function getLatestTransactions(int $limit = 20)
+    public function getLatestTransactions(int $limit = null)
     {
         //todo: move it to repository for caching
-        return $this->transactions()->orderBy('created_at', 'desc')->limit($limit)->get();
+        $query = $this->transactions()->orderBy('created_at', 'desc');
+
+        if($limit) {
+            $query = $query->limit($limit);
+        }
+
+        return $query->get();
     }
 }

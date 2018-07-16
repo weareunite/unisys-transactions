@@ -2,6 +2,7 @@
 
 namespace Unite\Transactions\Http\Controllers;
 
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Unite\Transactions\Events\MadeTransaction;
 use Unite\Transactions\Http\Requests\Transaction\StoreRequest;
 use Unite\Transactions\Http\Resources\TransactionResource;
@@ -10,7 +11,7 @@ use Unite\Transactions\Traits\HasTransactionsInterface;
 /**
  * @property-read \Unite\UnisysApi\Repositories\Repository $repository
  */
-trait AddTransaction
+trait HandleTransaction
 {
     /**
      * Add Transaction
@@ -34,5 +35,27 @@ trait AddTransaction
         event(new MadeTransaction($transaction));
 
         return new TransactionResource($transaction);
+    }
+
+    /**
+     * Get latest Transactions
+     *
+     * Get all transactions order by created desc for given model find by model primary id
+     *
+     * @param int $id
+     *
+     * @return AnonymousResourceCollection|TransactionResource[]
+     */
+    public function allTransactions(int $id)
+    {
+        /** @var HasTransactionsInterface $object */
+        if(!$object = $this->repository->find($id)) {
+            abort(404);
+        }
+
+        $transactions = $object->getLatestTransactions();
+
+        return TransactionResource::collection($transactions);
+
     }
 }

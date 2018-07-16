@@ -3,8 +3,7 @@
 namespace Unite\Transactions\Http\Requests\Source;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Unite\Transactions\Models\Transaction;
-use Unite\UnisysApi\Rules\PriceAmount;
+use Unite\Transactions\Models\Source;
 
 class StoreRequest extends FormRequest
 {
@@ -26,7 +25,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'type'          => 'required|in:'.implode(',', Transaction::getTypes()),
+            'type'          => 'required|in:'.implode(',', Source::getTypes()),
             'name'          => 'required|string|max:100',
             'short_name'    => 'required|string|max:5',
             'iban'          => 'nullable|string|min:15|max:32',

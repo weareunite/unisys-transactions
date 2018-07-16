@@ -12,10 +12,6 @@ class Source extends Model
         'type', 'name', 'short_name', 'iban', 'bic', 'swift', 'description',
     ];
 
-    protected $casts = [
-        'balance' => 'float',
-    ];
-
     const TYPE_BANK_ACCOUNT = 'bank-account';
     const TYPE_CASH_DESK    = 'cash-desk';
 

@@ -30,8 +30,8 @@ class StoreRequest extends FormRequest
             'source_id'         => 'required|integer|exists:transaction_sources,id',
             'destination_iban'  => 'required|string|min:15|max:32',
             'amount'            => ['required', new PriceAmount],
-            'variable_symbol'   => 'nullable|numeric|max:10',
-            'specific_symbol'   => 'nullable|numeric|max:10',
+            'variable_symbol'   => 'nullable|digits_between:0,10',
+            'specific_symbol'   => 'nullable|digits_between:0,10',
             'description'       => 'nullable|string|max:250',
             'posted_at'         => 'date_format:Y-m-d H:i:s',
         ];

@@ -14,6 +14,7 @@ class Source extends Model
 
     const TYPE_BANK_ACCOUNT = 'bank-account';
     const TYPE_CASH_DESK    = 'cash-desk';
+    const TYPE_CREDIT_CARD  = 'credit-card';
 
     public function transactions()
     {
@@ -25,6 +26,7 @@ class Source extends Model
         return [
             self::TYPE_BANK_ACCOUNT,
             self::TYPE_CASH_DESK,
+            self::TYPE_CREDIT_CARD,
         ];
     }
 

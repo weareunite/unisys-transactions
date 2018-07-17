@@ -19,7 +19,7 @@ class Transaction extends Model
     protected $table = 'transactions';
 
     protected $fillable = [
-        'type', 'source_id', 'destination_iban', 'amount', 'variable_symbol', 'specific_symbol', 'description', 'posted_at',
+        'type', 'transaction_source_id', 'destination_iban', 'amount', 'variable_symbol', 'specific_symbol', 'description', 'posted_at',
     ];
 
     protected $dispatchesEvents = [
@@ -40,7 +40,7 @@ class Transaction extends Model
 
     public function source()
     {
-        return $this->belongsTo(Source::class, 'source_id');
+        return $this->belongsTo(Source::class, 'transaction_source_id');
     }
 
     public static function getTypes(): array

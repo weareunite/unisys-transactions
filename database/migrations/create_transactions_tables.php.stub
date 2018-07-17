@@ -24,8 +24,8 @@ class CreateTransactionsTables extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
             $table->morphs('subject');
-            $table->integer('source_id')->unsigned();
-            $table->foreign('source_id')->references('id')->on('transaction_sources');
+            $table->integer('transaction_source_id')->unsigned();
+            $table->foreign('transaction_source_id')->references('id')->on('transaction_sources');
             $table->string('destination_iban');
             $table->decimal('amount', 12, 2);
             $table->decimal('balance', 12, 2)->nullable();

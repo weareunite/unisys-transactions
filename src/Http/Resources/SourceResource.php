@@ -2,7 +2,7 @@
 
 namespace Unite\Transactions\Http\Resources;
 
-use Illuminate\Http\Resources\Json\Resource;
+use Unite\UnisysApi\Http\Resources\Resource;
 
 class SourceResource extends Resource
 {

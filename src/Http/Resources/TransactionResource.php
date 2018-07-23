@@ -2,11 +2,15 @@
 
 namespace Unite\Transactions\Http\Resources;
 
-use Illuminate\Http\Resources\Json\Resource;
 use Unite\Tags\Http\Resources\TagResource;
+use Unite\UnisysApi\Http\Resources\Resource;
 
 class TransactionResource extends Resource
 {
+    protected static $relations = [
+        'tags',
+    ];
+
     /**
      * Transform the resource into an array.
      *
@@ -19,6 +23,8 @@ class TransactionResource extends Resource
         return [
             'id'                 => $this->id,
             'type'               => $this->type,
+            'subject_type'       => $this->subject_type,
+            'subject_id'         => $this->subject_id,
             'amount'             => $this->amount,
             'balance'            => $this->balance,
             'variable_symbol'    => (int)$this->variable_symbol,

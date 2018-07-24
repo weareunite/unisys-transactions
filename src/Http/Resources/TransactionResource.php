@@ -7,10 +7,6 @@ use Unite\UnisysApi\Http\Resources\Resource;
 
 class TransactionResource extends Resource
 {
-    protected static $relations = [
-        'tags',
-    ];
-
     /**
      * Transform the resource into an array.
      *

@@ -34,7 +34,7 @@ class TransactionController extends Controller
      */
     public function list(QueryRequest $request)
     {
-        $object = $this->repository->with(TransactionResource::getRelations())->filterByRequest( $request->all() );
+        $object = $this->repository->with($this->repository->getResourceRelations())->filterByRequest( $request->all() );
 
         return TransactionResource::collection($object);
     }

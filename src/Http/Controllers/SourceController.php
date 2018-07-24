@@ -32,7 +32,7 @@ class SourceController extends Controller
      */
     public function list(QueryRequest $request)
     {
-        $object = $this->repository->with(SourceResource::getRelations())->filterByRequest( $request->all() );
+        $object = $this->repository->with($this->repository->getResourceRelations())->filterByRequest( $request->all() );
 
         return SourceResource::collection($object);
     }

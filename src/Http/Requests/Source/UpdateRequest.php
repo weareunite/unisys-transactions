@@ -27,7 +27,7 @@ class UpdateRequest extends FormRequest
         return [
             'type'          => 'in:'.implode(',', Source::getTypes()),
             'name'          => 'string|max:100',
-            'short_name'    => 'string|max:5',
+            'short_name'    => 'string|max:10',
             'iban'          => 'nullable|string|min:15|max:32',
             'bic'           => 'nullable|string|min:8|max:11',
             'swift'         => 'nullable|string|min:8|max:11',

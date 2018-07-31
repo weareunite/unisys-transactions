@@ -8,8 +8,4 @@ use Unite\Transactions\Models\Transaction;
 class TransactionRepository extends Repository
 {
     protected $modelClass = Transaction::class;
-
-    protected $resourceRelations = [
-        'tags',
-    ];
 }

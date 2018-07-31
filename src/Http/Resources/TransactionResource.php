@@ -2,7 +2,6 @@
 
 namespace Unite\Transactions\Http\Resources;
 
-use Unite\Tags\Http\Resources\TagResource;
 use Unite\UnisysApi\Http\Resources\Resource;
 
 class TransactionResource extends Resource
@@ -29,8 +28,7 @@ class TransactionResource extends Resource
             'posted_at'          => (string)$this->posted_at,
             'created_at'         => (string)$this->created_at,
             'destination_iban'   => $this->destination_iban,
-            'transaction_source' => new SourceResource($this->source),
-            'tags'               => TagResource::collection($this->tags),
+            'transaction_source' => new SourceResource($this->source)
         ];
     }
 }

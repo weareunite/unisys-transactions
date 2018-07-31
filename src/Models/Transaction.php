@@ -14,7 +14,6 @@ use Unite\Transactions\Events\TransactionUpdating;
 class Transaction extends Model
 {
     use LogsActivity;
-    use HasTags;
 
     protected $table = 'transactions';
 

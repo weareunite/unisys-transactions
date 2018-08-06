@@ -56,6 +56,5 @@ trait HandleTransaction
         $transactions = $object->getLatestTransactions();
 
         return TransactionResource::collection($transactions);
-
     }
 }

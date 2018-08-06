@@ -2,4 +2,9 @@
 
 namespace Unite\Transactions\Events;
 
-class TransactionUpdating extends TransactionEvent {}
+use Unite\UnisysApi\Services\AmountService;
+
+class TransactionUpdating extends TransactionEvent
+{
+    public $type = AmountService::DIRECTION_DECIDE;
+}

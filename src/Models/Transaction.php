@@ -2,16 +2,17 @@
 
 namespace Unite\Transactions\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Unite\Tags\HasTags;
 use Unite\Transactions\Events\TransactionCreating;
-use Unite\Transactions\Events\TransactionDeleting;
 use Unite\Transactions\Events\TransactionSaving;
 use Unite\Transactions\Events\TransactionUpdating;
+use Unite\UnisysApi\Models\ModelWithAmount;
 
-class Transaction extends Model
+/**
+ * @property \Illuminate\Database\Eloquent\Model $subject
+ */
+class Transaction extends ModelWithAmount
 {
     use LogsActivity;
 
@@ -25,7 +26,6 @@ class Transaction extends Model
         'creating'  => TransactionCreating::class,
         'updating'  => TransactionUpdating::class,
         'saving'    => TransactionSaving::class,
-        'deleting'  => TransactionDeleting::class,
     ];
 
     const TYPE_CREDIT   = 'credit';

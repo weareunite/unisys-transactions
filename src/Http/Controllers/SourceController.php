@@ -95,7 +95,11 @@ class SourceController extends Controller
      */
     public function delete($id)
     {
-        $this->repository->delete($id);
+        try {
+            $this->repository->delete($id);
+        } catch(\Exception $e) {
+            abort(409, 'Cannot delete record');
+        }
 
         return $this->successJsonResponse();
     }

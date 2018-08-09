@@ -3,7 +3,9 @@
 namespace Unite\Transactions\Http\Controllers;
 
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Unite\Transactions\Events\MadeTransaction;
 use Unite\Transactions\Http\Resources\TransactionResource;
+use Unite\Transactions\Models\Transaction;
 use Unite\UnisysApi\Http\Controllers\Controller;
 use Unite\Transactions\TransactionRepository;
 use Unite\UnisysApi\Http\Requests\QueryRequest;
@@ -43,12 +45,32 @@ class TransactionController extends Controller
      *
      * @return TransactionResource
      */
-    public function show($id)
+    public function show(int $id)
     {
         if(!$object = $this->repository->find($id)) {
             abort(404);
         }
 
         return new TransactionResource($object);
+    }
+
+    /**
+     * Cancel
+     *
+     * @param Transaction $model
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function cancel(Transaction $model)
+    {
+        /** @var Transaction $newTransaction */
+        $newTransaction = $model->replicate();
+
+        $newTransaction->amount = -1 * abs($model->amount);
+        $newTransaction->save();
+
+        event(new MadeTransaction($newTransaction));
+
+        return $this->successJsonResponse();
     }
 }

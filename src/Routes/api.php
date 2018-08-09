@@ -21,6 +21,7 @@ Route::group([
     {
         Route::get('/',                             ['as' => 'list',                    'uses' => 'TransactionController@list']);
         Route::get('{id}',                          ['as' => 'show',                    'uses' => 'TransactionController@show']);
+        Route::post('{model}/cancel',               ['as' => 'cancel',                  'uses' => 'TransactionController@cancel']);
     });
 
     Route::group(['as' => 'transactionSource.', 'prefix' => 'transactionSource'], function ()

@@ -4,6 +4,10 @@ namespace Unite\Transactions\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static \Illuminate\Database\Eloquent\Builder|\Unite\Transactions\Models\Source whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Unite\Transactions\Models\Source whereShortName($value)
+ */
 class Source extends Model
 {
     protected $table = 'transaction_sources';

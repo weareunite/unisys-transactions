@@ -2,7 +2,7 @@
 
 namespace Unite\Transactions\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Unite\UnisysApi\Models\Model;
 
 /**
  * @method static \Illuminate\Database\Eloquent\Builder|\Unite\Transactions\Models\Source whereName($value)

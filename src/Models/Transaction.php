@@ -10,7 +10,7 @@ use Unite\Transactions\Events\TransactionUpdating;
 use Unite\UnisysApi\Models\ModelWithAmount;
 
 /**
- * @property \Illuminate\Database\Eloquent\Model $subject
+ * @property \Unite\UnisysApi\Models\Model $subject
  */
 class Transaction extends ModelWithAmount
 {

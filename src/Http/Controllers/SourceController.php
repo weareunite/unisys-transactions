@@ -8,7 +8,8 @@ use Unite\Transactions\Http\Requests\Source\UpdateRequest;
 use Unite\Transactions\Http\Resources\SourceResource;
 use Unite\Transactions\SourceRepository;
 use Unite\UnisysApi\Http\Controllers\Controller;
-use Unite\UnisysApi\Http\Requests\QueryRequest;
+use Unite\UnisysApi\QueryBuilder\QueryBuilder;
+use Unite\UnisysApi\QueryBuilder\QueryBuilderRequest;
 
 /**
  * @resource Transaction Sources
@@ -27,12 +28,12 @@ class SourceController extends Controller
     /**
      * List
      *
-     * @param QueryRequest $request
+     * @param QueryBuilderRequest $request
      * @return AnonymousResourceCollection|SourceResource[]
      */
-    public function list(QueryRequest $request)
+    public function list(QueryBuilderRequest $request)
     {
-        $object = $this->repository->with($this->repository->getResourceRelations())->filterByRequest( $request->all() );
+        $object = QueryBuilder::for($this->repository, $request)->paginate();
 
         return SourceResource::collection($object);
     }

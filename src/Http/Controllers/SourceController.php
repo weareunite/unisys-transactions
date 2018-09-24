@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Unite\Transactions\Http\Requests\Source\StoreRequest;
 use Unite\Transactions\Http\Requests\Source\UpdateRequest;
 use Unite\Transactions\Http\Resources\SourceResource;
+use Unite\Transactions\Models\Source;
 use Unite\Transactions\SourceRepository;
 use Unite\UnisysApi\Http\Controllers\Controller;
 use Unite\UnisysApi\QueryBuilder\QueryBuilder;
@@ -23,6 +24,12 @@ class SourceController extends Controller
     public function __construct(SourceRepository $repository)
     {
         $this->repository = $repository;
+
+        $this->setResourceClass(SourceResource::class);
+
+        $this->setResponse();
+
+        $this->middleware('cache')->only(['list', 'show']);
     }
 
     /**
@@ -35,29 +42,25 @@ class SourceController extends Controller
     {
         $object = QueryBuilder::for($this->repository, $request)->paginate();
 
-        return SourceResource::collection($object);
+        return $this->response->collection($object);
     }
 
     /**
      * Show
      *
-     * @param $id
-     * @return SourceResource
+     * @param Source $model
+     * @return Resource|SourceResource
      */
-    public function show($id)
+    public function show(Source $model)
     {
-        if(!$object = $this->repository->find($id)) {
-            abort(404);
-        }
-
-        return new SourceResource($object);
+        return $this->response->resource($model);
     }
 
     /**
      * Create
      *
      * @param StoreRequest $request
-     * @return SourceResource
+     * @return Resource|SourceResource
      */
     public function create(StoreRequest $request)
     {
@@ -65,25 +68,21 @@ class SourceController extends Controller
 
         $object = $this->repository->create($data);
 
-        return new SourceResource($object);
+        return $this->response->resource($object);
     }
 
     /**
      * Update
      *
-     * @param $id
+     * @param Source $model
      * @param UpdateRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update($id, UpdateRequest $request)
+    public function update(Source $model, UpdateRequest $request)
     {
-        if(!$object = $this->repository->find($id)) {
-            abort(404);
-        }
-
         $data = $request->all();
 
-        $object->update($data);
+        $model->update($data);
 
         return $this->successJsonResponse();
     }
@@ -91,13 +90,13 @@ class SourceController extends Controller
     /**
      * Delete
      *
-     * @param $id
+     * @param Source $model
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete($id)
+    public function delete(Source $model)
     {
         try {
-            $this->repository->delete($id);
+            $model->delete();
         } catch(\Exception $e) {
             abort(409, 'Cannot delete record');
         }

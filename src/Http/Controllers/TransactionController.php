@@ -23,6 +23,12 @@ class TransactionController extends Controller
     public function __construct(TransactionRepository $repository)
     {
         $this->repository = $repository;
+
+        $this->setResourceClass(TransactionResource::class);
+
+        $this->setResponse();
+
+        $this->middleware('cache')->only(['list', 'show']);
     }
 
     /**
@@ -36,23 +42,19 @@ class TransactionController extends Controller
     {
         $object = QueryBuilder::for($this->repository, $request)->paginate();
 
-        return TransactionResource::collection($object);
+        return $this->response->collection($object);
     }
 
     /**
      * Show
      *
-     * @param $id
+     * @param Transaction $model
      *
-     * @return TransactionResource
+     * @return Resource|TransactionResource
      */
-    public function show(int $id)
+    public function show(Transaction $model)
     {
-        if(!$object = $this->repository->find($id)) {
-            abort(404);
-        }
-
-        return new TransactionResource($object);
+        return $this->response->resource($model);
     }
 
     /**

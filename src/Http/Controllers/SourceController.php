@@ -68,6 +68,8 @@ class SourceController extends Controller
 
         $object = $this->repository->create($data);
 
+        \Cache::tags('response')->flush();
+
         return $this->response->resource($object);
     }
 
@@ -83,6 +85,8 @@ class SourceController extends Controller
         $data = $request->all();
 
         $model->update($data);
+
+        \Cache::tags('response')->flush();
 
         return $this->successJsonResponse();
     }
@@ -100,6 +104,8 @@ class SourceController extends Controller
         } catch(\Exception $e) {
             abort(409, 'Cannot delete record');
         }
+
+        \Cache::tags('response')->flush();
 
         return $this->successJsonResponse();
     }

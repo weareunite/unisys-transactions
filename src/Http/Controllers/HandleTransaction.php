@@ -34,6 +34,8 @@ trait HandleTransaction
 
         event(new MadeTransaction($transaction));
 
+        \Cache::tags('response')->flush();
+
         return new TransactionResource($transaction);
     }
 

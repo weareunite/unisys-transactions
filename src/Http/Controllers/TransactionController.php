@@ -74,6 +74,8 @@ class TransactionController extends Controller
 
         event(new MadeTransaction($newTransaction));
 
+        \Cache::tags('response')->flush();
+
         return $this->successJsonResponse();
     }
 }

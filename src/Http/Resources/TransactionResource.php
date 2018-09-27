@@ -2,6 +2,7 @@
 
 namespace Unite\Transactions\Http\Resources;
 
+use Unite\Transactions\Models\Transaction;
 use Unite\UnisysApi\Http\Resources\Resource;
 
 class TransactionResource extends Resource
@@ -30,5 +31,19 @@ class TransactionResource extends Resource
             'destination_iban'   => $this->destination_iban,
             'transaction_source' => new SourceResource($this->source)
         ];
+    }
+
+    public static function modelClass()
+    {
+        return Transaction::class;
+    }
+
+    public static function resourceMap()
+    {
+        $map = [
+            'transaction_source' => SourceResource::class
+        ];
+
+        return parent::resourceMap()->merge($map);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Unite\Transactions\Http\Resources;
 
+use Illuminate\Database\Eloquent\Builder;
+use Unite\Transactions\Models\Source;
 use Unite\UnisysApi\Http\Resources\Resource;
 
 class SourceResource extends Resource
@@ -28,5 +30,25 @@ class SourceResource extends Resource
             'description'       => $this->description,
             'created_at'        => (string)$this->created_at,
         ];
+    }
+
+    public static function modelClass()
+    {
+        return Source::class;
+    }
+
+    public static function virtualFields()
+    {
+        $virtualFields = [
+            'is_bank_account' => function (Builder &$query, $value) {
+
+                $sql = 'transaction_sources.type = ' . Source::TYPE_BANK_ACCOUNT;
+
+                return $query->orWhereRaw($sql);
+
+            }
+        ];
+
+        return parent::virtualFields()->merge($virtualFields);
     }
 }

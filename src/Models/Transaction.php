@@ -42,6 +42,11 @@ class Transaction extends ModelWithAmount
         return $this->belongsTo(Source::class, 'transaction_source_id');
     }
 
+    public function transactionSource()
+    {
+        return $this->source();
+    }
+
     public static function getTypes(): array
     {
         return [

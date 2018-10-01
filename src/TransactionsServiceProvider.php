@@ -4,7 +4,6 @@ namespace Unite\Transactions;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
-use Route;
 use Unite\Transactions\Console\Commands\Install;
 
 class TransactionsServiceProvider extends ServiceProvider
@@ -14,11 +13,6 @@ class TransactionsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::patterns([
-            'id'    => '^\d+$',
-            'model' => '^\d+$',
-        ]);
-
         $this->commands([
             Install::class,
         ]);

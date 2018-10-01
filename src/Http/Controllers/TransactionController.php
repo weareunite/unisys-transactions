@@ -8,6 +8,7 @@ use Unite\Transactions\Http\Resources\TransactionResource;
 use Unite\Transactions\Models\Transaction;
 use Unite\UnisysApi\Http\Controllers\Controller;
 use Unite\Transactions\TransactionRepository;
+use Unite\UnisysApi\Http\Controllers\HasExport;
 use Unite\UnisysApi\QueryBuilder\QueryBuilder;
 use Unite\UnisysApi\QueryBuilder\QueryBuilderRequest;
 
@@ -18,6 +19,8 @@ use Unite\UnisysApi\QueryBuilder\QueryBuilderRequest;
  */
 class TransactionController extends Controller
 {
+    use HasExport;
+
     protected $repository;
 
     public function __construct(TransactionRepository $repository)

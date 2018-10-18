@@ -7,12 +7,12 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Unite\Transactions\Events\TransactionCreating;
 use Unite\Transactions\Events\TransactionSaving;
 use Unite\Transactions\Events\TransactionUpdating;
-use Unite\UnisysApi\Models\ModelWithAmount;
+use Unite\UnisysApi\Models\Model;
 
 /**
  * @property \Unite\UnisysApi\Models\Model $subject
  */
-class Transaction extends ModelWithAmount
+class Transaction extends Model
 {
     use LogsActivity;
 

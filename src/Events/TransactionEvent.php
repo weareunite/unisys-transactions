@@ -11,8 +11,6 @@ abstract class TransactionEvent
 
     public $transaction;
 
-    public $type;
-
     /**
      * Create a new event instance.
      *

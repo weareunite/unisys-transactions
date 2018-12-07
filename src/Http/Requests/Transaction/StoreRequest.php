@@ -28,7 +28,7 @@ class StoreRequest extends FormRequest
         return [
             'type'                  => 'in:' . implode(',', Transaction::getTypes()),
             'transaction_source_id' => 'required|integer|exists:transaction_sources,id',
-            'destination_iban'      => 'required|string|min:15|max:32',
+            'destination_iban'      => 'nullable|string|min:15|max:32',
             'amount'                => [ 'required', new PriceAmount ],
             'variable_symbol'       => 'nullable|digits_between:0,10',
             'specific_symbol'       => 'nullable|digits_between:0,10',

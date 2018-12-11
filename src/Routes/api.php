@@ -21,6 +21,7 @@ Route::group([
     {
         Route::get('/',                             ['as' => 'list',                    'uses' => 'TransactionController@list']);
         Route::get('{model}',                       ['as' => 'show',                    'uses' => 'TransactionController@show']);
+        Route::delete('{model}',                    ['as' => 'delete',                  'uses' => 'TransactionController@delete']);
         Route::post('{model}/cancel',               ['as' => 'cancel',                  'uses' => 'TransactionController@cancel']);
 
         Route::get('export',                        ['as' => 'export',                  'uses' => 'TransactionController@export']);

@@ -81,4 +81,24 @@ class TransactionController extends Controller
 
         return $this->successJsonResponse();
     }
+
+    /**
+     * Delete
+     *
+     * @param Transaction $model
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete(Transaction $model)
+    {
+        try {
+            $model->delete();
+        } catch(\Exception $e) {
+            abort(409, 'Cannot delete record');
+        }
+
+        \Cache::tags('response')->flush();
+
+        return $this->successJsonResponse();
+    }
 }

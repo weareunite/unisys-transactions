@@ -18,6 +18,21 @@ class StoreRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        if ($this->has('destination_iban')) {
+            $destination_iban = $this->get('destination_iban');
+
+            if ($destination_iban === '') {
+                $destination_iban = null;
+            }
+
+            $this->merge([
+                'destination_iban' => $destination_iban
+            ]);
+        }
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *

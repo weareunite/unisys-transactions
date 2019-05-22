@@ -2,6 +2,7 @@
 
 namespace Unite\Transactions\Models;
 
+use Unite\UnisysApi\Models\HasInstance;
 use Unite\UnisysApi\Models\Model;
 
 /**
@@ -10,6 +11,8 @@ use Unite\UnisysApi\Models\Model;
  */
 class Source extends Model
 {
+    use HasInstance;
+
     protected $table = 'transaction_sources';
 
     protected $fillable = [
